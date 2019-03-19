@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package educonn.account;
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+// The Account service is at the core of the users
+service Account {
+
+    // Create is used to create a new educonn account
+    rpc Create(CreateAccountRequest) returns (CreateAccountResponse) {
+        option (google.api.http) = {
+            post: "/v1/account"
+            body: "*"
+        };
+    }
+}
+
+message AccountInfo {
+   string id = 1;
+   string email = 2;
+   string name = 3;
+   string password = 4;
+}
+
+message CreateAccountRequest {
+    string email = 1;
+    string name = 2;
+    string password = 3;
+}
+
+message CreateAccountResponse {
+    AccountInfo account = 1;
+}
