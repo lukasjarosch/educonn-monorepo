@@ -9,4 +9,4 @@ install:
 script:
   - mkdir -p api/gen/go
   - ./scripts/api/prototool.sh generate
-  - ./scripts/aip/sync-stub-repo.sh
+  - ./scripts/aip/sync-stubs.sh

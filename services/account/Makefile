@@ -1,17 +1,16 @@
-VERSION ?= $(shell git describe --tags --always --dirty --match=v* 2> /dev/null || cat $(CURDIR)/.version 2> /dev/null || echo v0.0.0)
-BUILDVER = module:$(MODULE),version:$(VERSION),build:$(shell date +"%Y%m%d.%H%M%S.%N.%z")
-BASE = $(CURDIR)
-MODULE = accountsvc
+# vi: ft=make
 
-.PHONY: all $(MODULE)
-all: version $(MODULE)
+GOPATH:=$(shell go env GOPATH)
 
+.PHONY: proto test
 
-$(MODULE):| $(BASE)
-	@go build -v -o $(BASE)/bin/$@
+proto:
+	go get github.com/golang/protobuf/protoc-gen-go
+	protoc -I . account.proto --lile-server_out=. --go_out=plugins=grpc:${GOPATH}/src
 
-$(BASE):
-	@mkdir -p $(dir $@)
-
-version:
-	@echo Version ${VERSION}
+build: proto
+	go build -o build/account account/main.go
+    
+test:
+	@go get github.com/rakyll/gotest
+	gotest -p 1 -v ./...
