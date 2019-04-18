@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package educonn.user.account.v1beta1;
+
+option csharp_namespace = "Educonn.User.Account.V1Beta1";
+option go_package = "accountv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "AccountProto";
+option java_package = "com.educonn.user.account.v1beta1";
+option objc_class_prefix = "EUA";
+option php_namespace = "Educonn\\User\\Account\\V1Beta1";
