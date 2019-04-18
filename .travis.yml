@@ -8,5 +8,5 @@ install:
 
 script:
   - mkdir -p api/gen/go
-  - ./scripts/api/prototool.sh generate
-  - ./scripts/aip/sync-stubs.sh
+  - ./scripts/prototool.sh generate
+  - ./scripts/sync-proto-stubs.sh
